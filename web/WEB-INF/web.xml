@@ -8,6 +8,10 @@
         <servlet-name>Test2Servlet</servlet-name>
         <servlet-class>servlets.Test2Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AverageServlet</servlet-name>
+        <servlet-class>servlets.AverageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -16,12 +20,16 @@
         <servlet-name>Test2Servlet</servlet-name>
         <url-pattern>/test2</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AverageServlet</servlet-name>
+        <url-pattern>/average</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>test</welcome-file>
+        <welcome-file>average</welcome-file>
     </welcome-file-list>
 </web-app>
