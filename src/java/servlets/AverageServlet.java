@@ -2,7 +2,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +23,27 @@ public class AverageServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        ArrayList<Integer> numbers = (ArrayList<Integer>) session.getAttribute("numbers");
+        ArrayList<Integer> numbers = (ArrayList<Integer>)session.getAttribute("numbers");
         if (numbers == null)
-            numbers = new ArrayList<Integer>();
+            numbers = new ArrayList<>();
+        
+         if (request.getParameter("number") != null) {
+            int number = Integer.parseInt(request.getParameter("number"));
+            numbers.add(number);
+            session.setAttribute("numbers", numbers);
+        }
+        
+        // Calculate Average
+        double average = 0.0;
+        for(int number : numbers) {
+            average += number;
+        }
+        
+        if (numbers.size() > 0) {
+            average /= numbers.size();
+        }
+        
+        request.setAttribute("average",average);
         
      getServletContext().getRequestDispatcher("/WEB-INF/average.jsp").forward(request, response);
     }
